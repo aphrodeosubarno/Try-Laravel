@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,9 +15,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-	return view('home', [
-		'title' => 'Home',
-	]);
+	return view('home', ['title' => 'Home']);
 });
 
 Route::get('/about', function () {
@@ -29,56 +28,8 @@ Route::get('/about', function () {
 	]);
 });
 
-
-
-Route::get('/blog', function () {
-	$blog_posts = [
-		[
-			'title' => 'Judul Post Pertama',
-			'slug' => 'judul-post-pertama',
-			'author' => 'Deo Subarno',
-			'body' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos perspiciatis sunt sequi voluptates minima magni a sapiente consequatur odit odio repudiandae, aspernatur ad nam voluptatum suscipit'
-		],
-		[
-			'title' => 'Judul Post Kedua',
-			'slug' => 'judul-post-kedua',
-			'author' => 'Inuyama Aoi',
-			'body' => 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quisquam aperiam eius minus, vero velit delectus similique suscipit animi commodi veniam sed consequuntur debitis optio dicta expedita voluptate tempora iure, corporis autem culpa totam. Labore soluta fugiat ducimus! Numquam, odio sapiente maxime exercitationem cupiditate '
-		],
-	];
-
-	return view('posts', [
-		'title' => 'Post',
-		'posts' => $blog_posts,
-	]);
-});
+// All Posts
+Route::get('/blog', [PostController::class, 'index']);
 
 // Single Post
-Route::get('/blog/{slug}', function ($slug) {
-	$blog_posts = [
-		[
-			'title' => 'Judul Post Pertama',
-			'slug' => 'judul-post-pertama',
-			'author' => 'Deo Subarno',
-			'body' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos perspiciatis sunt sequi voluptates minima magni a sapiente consequatur odit odio repudiandae, aspernatur ad nam voluptatum suscipit'
-		],
-		[
-			'title' => 'Judul Post Kedua',
-			'slug' => 'judul-post-kedua',
-			'author' => 'Inuyama Aoi',
-			'body' => 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quisquam aperiam eius minus, vero velit delectus similique suscipit animi commodi veniam sed consequuntur debitis optio dicta expedita voluptate tempora iure, corporis autem culpa totam. Labore soluta fugiat ducimus! Numquam, odio sapiente maxime exercitationem cupiditate '
-		],
-	];
-
-	$single_post = [];
-	foreach ($blog_posts as $post) {
-		if ($post['slug'] === $slug) {
-			$single_post = $post;
-		}
-	}
-
-	return view('post', [
-		'title' => 'Single Post',
-		'post' => $single_post,
-	]);
-});
+Route::get('/blog/{slug}', [PostController::class, 'show']);
