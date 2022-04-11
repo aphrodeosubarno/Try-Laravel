@@ -18,12 +18,13 @@ Route::get('/', function () {
 });
 
 Route::get('/about', function () {
-	return view('about', [
+	$data = [
 		'nama' => 'Deo Subarno',
 		'email' => 'aprodeosubarno@gmail.com',
 		'pekerjaan' => 'Software Developer',
 		'image' => 'kon.jpg'
-	]);
+	];
+	return view('about', $data);
 });
 
 Route::get('/blog', function () {
