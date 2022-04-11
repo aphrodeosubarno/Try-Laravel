@@ -1,16 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="css/style.css">
-    <title>Larablog | Posts</title>
-</head>
-
-<body>
-    <h1>Halaman Posts</h1>
-</body>
-
-</html>
+@extends('layouts.main')
+@section('container')
+    @foreach ($posts as $post)
+        <div class="row mb-3">
+            <div class="col">
+                <article>
+                    <h1>
+                        <a href="/blog/{{ $post['slug'] }}">{{ $post['title'] }}</a>
+                    </h1>
+                    <h5>By: {{ $post['author'] }}</h5>
+                    <p>{{ $post['body'] }}</p>
+                </article>
+            </div>
+        </div>
+    @endforeach
+@endsection
