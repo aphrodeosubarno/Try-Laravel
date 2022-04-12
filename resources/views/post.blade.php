@@ -3,16 +3,16 @@
     <div class="row">
         <div class="col">
             <article>
-                <h1>{{ $post['title'] }}</h1>
-                <h5>{{ $post['author'] }}</h5>
-                <p>{{ $post['body'] }}</p>
+                <h2 class="mb-3">{{ $post->title }}</h2>
+                <h5 class="mb-4">By: {{ $post->author }}</h5>
+                {!! $post->body !!}
             </article>
         </div>
     </div>
 
     <div class="row">
         <div class="col">
-            <a href="/blog">Back to Posts</a>
+            <a href="/posts" class="btn btn-success">&laquo; Back to Posts</a>
         </div>
     </div>
 @endsection
