@@ -1,5 +1,4 @@
 @extends('layouts.main')
-
 @section('container')
     <div class="row">
         <h1 class="mb-4 text-center">{{ $category }}</h1>
