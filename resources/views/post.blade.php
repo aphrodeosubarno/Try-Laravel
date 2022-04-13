@@ -14,6 +14,7 @@
     <div class="row">
         <div class="col">
             <a href="/posts" class="btn btn-success">&laquo; Back to Posts</a>
+            <a href="/categories/{{ $post->category->slug }}" class="btn btn-primary">&laquo; Back to Categories</a>
         </div>
     </div>
 @endsection
