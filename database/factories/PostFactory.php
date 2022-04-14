@@ -16,10 +16,10 @@ class PostFactory extends Factory
         return [
             'category_id' => mt_rand(1, 3),
             'user_id' => mt_rand(1, 20),
-            'title' => $this->faker->sentence(mt_rand(2, 7)),
+            'title' => $this->faker->sentence(mt_rand(2, 5)),
             'slug' => $this->faker->slug(mt_rand(1, 2)),
             'excerpt' => $this->faker->paragraph(),
-            'body' => $this->faker->paragraph(mt_rand(5, 10))
+            'body' => "<p>" . implode('</p><p>', $this->faker->paragraphs(mt_rand(5, 10))) . "</p>"
         ];
     }
 }

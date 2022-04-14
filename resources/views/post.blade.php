@@ -1,21 +1,31 @@
 @extends('layouts.main')
 @section('container')
-    <div class="row">
-        <div class="col">
+    <div class="row justify-content-center my-3">
+        <div class="col-md-8">
             <article>
-                <h2 class="mb-3">{{ $post->title }}</h2>
-                <h5 class="mb-4">Write by <a href="/author/{{ $post->user->username }}"
-                        class="text-decoration-none">{{ $post->user->name }}</a> in <a
-                        href="/cateogries/{{ $post->category->slug }}">{{ $post->category->name }}</a></h5>
+                <h2 class="mb-3 text-center">{{ $post->title }}</h2>
+                <h5 class=" text-center">Write by
+                    <a href="/author/{{ $post->user->username }}" class="text-decoration-none">
+                        {{ $post->user->name }}
+                    </a> in
+                    <a href="/categories/{{ $post->category->slug }}">
+                        {{ $post->category->name }}
+                    </a>
+                </h5>
+
+                <img src="https://source.unsplash.com/1200x600?{{ $post->category->name }}"
+                    alt="{{ $post->category->name }}" class="img-fluid my-4 rounded">
+
                 {!! $post->body !!}
             </article>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col">
-            <a href="/posts" class="btn btn-success">&laquo; Back to Posts</a>
-            <a href="/categories/{{ $post->category->slug }}" class="btn btn-primary">&laquo; Back to Categories</a>
+            <div class="mt-4">
+                <a href="/posts" class="btn btn-success">
+                    &laquo; Back to Posts
+                </a>
+                <a href="/categories/{{ $post->category->slug }}" class="btn btn-primary">
+                    &laquo; Back to Categories
+                </a>
+            </div>
         </div>
     </div>
 @endsection
