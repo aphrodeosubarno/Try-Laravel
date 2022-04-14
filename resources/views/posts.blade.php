@@ -1,20 +1,19 @@
 @extends('layouts.main')
 @section('container')
     <div class="row mb-3">
-        <h1 class="mb-4 text-center">Article</h1>
+        <h2 class="mb-5 mt-2">{{ $title }}</h2>
         @foreach ($posts as $post)
-            <div class="col-md-4">
-                <div class="card text-dark bg-light border-secondary mb-3">
-                    <div class="card-header fs-4 text-center">{{ $post->title }}</div>
-                    <div class="card-body">
-                        <h6 class="mb-3">Write by <a href="/author/{{ $post->user->username }}"
-                                class="text-decoration-none">{{ $post->user->name }}</a> in <a
-                                href="/categories/{{ $post->category->slug }}"
-                                class="text-decoration-none">{{ $post->category->name }}</a></h6>
-                        <p class="card-text">{{ $post->excerpt }}</p>
-                        <a href="/posts/{{ $post->slug }}" class="text-decoration-none">Read More ...</a>
-                    </div>
-                </div>
+            <div class="col-12">
+                <article class="mb-5 border-bottom pb-4">
+                    <h2><a href="/posts/{{ $post->slug }}" class="text-decoration-none">{{ $post->title }}</a></h2>
+
+                    <p>Written by : <a href="/author/{{ $post->user->username }}"
+                            class="text-decoration-none">{{ $post->user->name }}</a> in <a
+                            href="/categories/{{ $post->category->slug }}"
+                            class="text-decoration-none">{{ $post->category->name }}</a></p>
+
+                    <p>{{ $post->excerpt }}</p>
+                </article>
             </div>
         @endforeach
     </div>

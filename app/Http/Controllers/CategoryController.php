@@ -9,11 +9,17 @@ class CategoryController extends Controller
 {
     public function index()
     {
-        return view('categories', ['title' => 'Categories', 'categories' => Category::all()]);
+        return view('categories', [
+            'title' => 'Categories',
+            'categories' => Category::all()
+        ]);
     }
 
     public function show(Category $category)
     {
-        return view('category', ['title' => $category->name, 'posts' => $category->posts, 'category' => $category->name]);
+        return view('posts', [
+            'title' => "Category: $category->name",
+            'posts' => $category->posts->load('user', 'category'),
+        ]);
     }
 }
