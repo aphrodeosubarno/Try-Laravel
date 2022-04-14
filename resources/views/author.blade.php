@@ -1,10 +1,10 @@
 @extends('layouts.main')
 @section('container')
-    <div class="row">
-        <h1 class="mb-4 text-center">{{ $category }}</h1>
+    <div class="row mb-3">
+        <h3 class="mb-4">Author: {{ $author }}</h3>
         @foreach ($posts as $post)
             <div class="col-md-4">
-                <div class="card text-dark bg-light mb-3">
+                <div class="card text-dark bg-light border-secondary mb-3">
                     <div class="card-header fs-4 text-center">{{ $post->title }}</div>
                     <div class="card-body">
                         <h6 class="mb-3">Write by <a href="/author/{{ $post->user->username }}"
