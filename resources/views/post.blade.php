@@ -4,7 +4,8 @@
         <div class="col">
             <article>
                 <h2 class="mb-3">{{ $post->title }}</h2>
-                <h5 class="mb-4">Write by {{ $post->user->name }} in <a
+                <h5 class="mb-4">Write by <a href="/author/{{ $post->user->username }}"
+                        class="text-decoration-none">{{ $post->user->name }}</a> in <a
                         href="/cateogries/{{ $post->category->slug }}">{{ $post->category->name }}</a></h5>
                 {!! $post->body !!}
             </article>
