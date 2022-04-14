@@ -17,7 +17,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        User::factory(10)->create();
+        User::factory(20)->create();
 
         Category::create([
             'name' => 'Programming',
@@ -34,6 +34,6 @@ class DatabaseSeeder extends Seeder
             'slug' => 'personal',
         ]);
 
-        Post::factory(30)->create();
+        Post::factory(60)->create();
     }
 }
