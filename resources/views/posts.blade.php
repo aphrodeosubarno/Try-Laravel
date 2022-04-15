@@ -70,7 +70,7 @@
                 </div>
             @endforeach
         @else
-            <div class="col mt-2">
+            <div class="col-12 mt-2">
                 <p class="text-center fs-4">Post Not Found ...</p>
             </div>
         @endif

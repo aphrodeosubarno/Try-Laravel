@@ -17,23 +17,23 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        User::factory(20)->create();
+        // User::factory(20)->create();
 
-        Category::create([
-            'name' => 'Programming',
-            'slug' => 'programming',
-        ]);
+        // Category::create([
+        //     'name' => 'Programming',
+        //     'slug' => 'programming',
+        // ]);
 
-        Category::create([
-            'name' => 'UI/UX Design',
-            'slug' => 'uiux-design',
-        ]);
+        // Category::create([
+        //     'name' => 'UI/UX Design',
+        //     'slug' => 'uiux-design',
+        // ]);
 
-        Category::create([
-            'name' => 'Personal',
-            'slug' => 'personal',
-        ]);
+        // Category::create([
+        //     'name' => 'Personal',
+        //     'slug' => 'personal',
+        // ]);
 
-        Post::factory(30)->create();
+        Post::factory(100)->create();
     }
 }
