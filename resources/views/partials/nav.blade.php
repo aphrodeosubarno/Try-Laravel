@@ -23,7 +23,9 @@
             </ul>
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a href="/login" class="nav-link active"><i class="bi bi-box-arrow-in-right"></i>&nbsp;Login</a>
+                    <a href="/login" class="btn btn-success w-100">
+                        <i class="bi bi-box-arrow-in-right"></i>&nbsp;Login
+                    </a>
                 </li>
             </ul>
         </div>
