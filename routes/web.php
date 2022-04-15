@@ -36,8 +36,3 @@ Route::get('/posts', [PostController::class, 'index']);
 Route::get('/posts/{post:slug}', [PostController::class, 'show']);
 // All Categories
 Route::get('/categories', [CategoryController::class, 'index']);
-// Single Category
-Route::get('/categories/{category:slug}', [CategoryController::class, 'show']);
-Route::get('/author/{user:username}', function (User $user) {
-	return view('posts', ['title' => "Author: $user->name", 'posts' => $user->posts->load('category', 'user'), 'author' => $user->name]);
-});

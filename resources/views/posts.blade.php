@@ -1,14 +1,26 @@
 @extends('layouts.main')
 @section('container')
     <div class="row mb-3 justify-content-center">
-        <h1 class="mb-4 mt-2 text-center">{{ $title }}</h1>
+        <h2 class="mb-4 mt-2 text-center">{{ $title }}</h2>
         <div class="col-md-6">
-            <form action="" method="post">
+            <form action="/posts" method="get">
+
+                {{-- If  category is exist in url --}}
+                @if (request('category'))
+                    <input type="hidden" name="category" value="{{ request('category') }}">
+                @endif
+
+                {{-- If user is exist in url --}}
+                @if (request('user'))
+                    <input type="hidden" name="user" value="{{ request('user') }}">
+                @endif
+
                 <div class="input-group mb-4">
-                    <input type="text" class="form-control" placeholder="Cari Posts...">
+                    <input type="text" class="form-control" placeholder="Cari Posts..." name="keyword"
+                        value="{{ request('keyword') }}">
                     <div class="input-group-append">
-                        <button class="btn btn-success" type="button" id="button-addon2">
-                            Button
+                        <button class="btn btn-primary" type="submit">
+                            Search
                         </button>
                     </div>
                 </div>
@@ -25,10 +37,10 @@
                         </a>
                         <p>
                             <small class="text-muted">Written by :
-                                <a href="/author/{{ $posts[0]->user->username }}" class="text-decoration-none">
+                                <a href="/posts?user={{ $posts[0]->user->username }}" class="text-decoration-none">
                                     {{ $posts[0]->user->name }}
                                 </a> in
-                                <a href="/categories/{{ $posts[0]->category->slug }}" class="text-decoration-none">
+                                <a href="/posts?category={{ $posts[0]->category->slug }}" class="text-decoration-none">
                                     {{ $posts[0]->category->name }}
                                 </a>
                                 {{ $posts[0]->created_at->diffForHumans() }}
@@ -43,8 +55,7 @@
 
             @foreach ($posts->skip(1) as $post)
                 <div class="col-md-4 mb-5 d-flex justify-content-between flex-column">
-                    <div class="card border border-2 border-light"
-                        style="min-height: 100%; box-shadow: 6px 6px 8px rgba(0,0,0,0.15)">
+                    <div class="card" style="min-height: 100%; box-shadow: 6px 6px 8px rgba(0,0,0,0.15)">
                         <img src="https://source.unsplash.com/500x400?{{ $post->category->name }}" class="card-img-top"
                             alt="{{ $post->title }}">
                         <div class="card-body">
@@ -55,10 +66,10 @@
                             </h5>
                             <p class="card-text">
                                 <small>Written by :
-                                    <a href="/author/{{ $post->user->username }}" class="text-decoration-none">
+                                    <a href="/posts?user={{ $post->user->username }}" class="text-decoration-none">
                                         {{ $post->user->name }}
                                     </a> in
-                                    <a href="/categories/{{ $post->category->slug }}" class="text-decoration-none">
+                                    <a href="/posts?category={{ $post->category->slug }}" class="text-decoration-none">
                                         {{ $post->category->name }}
                                     </a>
                                 </small>
@@ -75,6 +86,9 @@
             </div>
         @endif
 
+        <div class="col-md-6 d-flex justify-content-center">
+            {{ $posts->links() }}
+        </div>
 
     </div>
 @endsection

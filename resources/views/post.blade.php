@@ -5,10 +5,10 @@
             <article>
                 <h2 class="mb-3 text-center">{{ $post->title }}</h2>
                 <h5 class=" text-center">Write by
-                    <a href="/author/{{ $post->user->username }}" class="text-decoration-none">
+                    <a href="/posts?user={{ $post->user->username }}" class="text-decoration-none">
                         {{ $post->user->name }}
                     </a> in
-                    <a href="/categories/{{ $post->category->slug }}">
+                    <a href="/posts?category={{ $post->category->slug }}">
                         {{ $post->category->name }}
                     </a>
                 </h5>
@@ -21,9 +21,6 @@
             <div class="mt-4">
                 <a href="/posts" class="btn btn-success">
                     &laquo; Back to Posts
-                </a>
-                <a href="/categories/{{ $post->category->slug }}" class="btn btn-primary">
-                    &laquo; Back to Categories
                 </a>
             </div>
         </div>
