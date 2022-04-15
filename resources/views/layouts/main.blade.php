@@ -15,7 +15,27 @@
 
     <style>
         * {
+            box-sizing: border-box;
             font-family: "Lexend Deca", Arial, Helvetica, sans-serif !important;
+        }
+
+        .jumbotron {
+            background-color: #ddd;
+            padding: 3rem;
+        }
+
+        .navbar .navbar-toggler {
+            border: none;
+            outline: none;
+        }
+
+        .navbar-toggler:focus,
+        .navbar-toggler:active,
+        .navbar-toggler-icon:focus,
+        .btn-close:focus,
+        .btn-close:active {
+            outline: none;
+            box-shadow: none;
         }
 
     </style>
