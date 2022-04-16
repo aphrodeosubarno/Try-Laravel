@@ -1,10 +1,8 @@
 <?php
 
-use App\Http\Controllers\AboutController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CategoryController;
-use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\HomeController;
+use App\Http\Controllers\DashboardPostController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
@@ -21,10 +19,20 @@ use App\Http\Controllers\RegisterController;
 */
 
 // Home
-Route::get('/', [HomeController::class, 'index']);
+Route::get('/', function () {
+  return view('home', ['title' => 'Home']);
+});
 
 // About
-Route::get('/about', [AboutController::class, 'index']);
+Route::get('/about', function () {
+  return view('about', [
+    'nama' => 'Deo Subarno',
+    'email' => 'aprodeosubarno@gmail.com',
+    'pekerjaan' => 'Software Developer',
+    'image' => 'kon.jpg',
+    'title' => 'About',
+  ]);
+});
 
 // All Posts
 Route::get('/posts', [PostController::class, 'index']);
@@ -35,12 +43,19 @@ Route::get('/categories', [CategoryController::class, 'index']);
 
 // Login & Logout
 Route::get('/login', [LoginController::class, 'index'])->name('login')->middleware('guest');
-Route::post('/login', [LoginController::class, 'authenticate']);
+Route::post('/login', [LoginController::class, 'login']);
 Route::post('/logout', [LoginController::class, 'logout']);
 
 // Register
 Route::get('/register', [RegisterController::class, 'new'])->middleware('guest');
 Route::post('/register', [RegisterController::class, 'create']);
 
-// Dashboard
-Route::get('/dashboard', [DashboardController::class, 'index'])->middleware('auth');
+// Dashboard Home
+Route::get('/dashboard', function () {
+  return view('dashboard.main.index', [
+    'title' => 'User Dashboard'
+  ]);
+})->middleware('auth');
+
+// Dashboard Posts
+Route::resource('/dashboard/posts', DashboardPostController::class);
