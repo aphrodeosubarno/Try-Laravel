@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
@@ -37,8 +38,13 @@ Route::get('/posts', [PostController::class, 'index']);
 Route::get('/posts/{post:slug}', [PostController::class, 'show']);
 // All Categories
 Route::get('/categories', [CategoryController::class, 'index']);
-// Login
-Route::get('/login', [LoginController::class, 'index']);
+
+// Login & Logout
+Route::get('/login', [LoginController::class, 'index'])->name('login')->middleware('guest');
+Route::post('/login', [LoginController::class, 'authenticate']);
+Route::post('/logout', [LoginController::class, 'logout']);
 // Register
-Route::get('/register', [RegisterController::class, 'new']);
+Route::get('/register', [RegisterController::class, 'new'])->middleware('guest');
 Route::post('/register', [RegisterController::class, 'create']);
+// Dashboard
+Route::get('/dashboard', [DashboardController::class, 'index'])->middleware('auth');

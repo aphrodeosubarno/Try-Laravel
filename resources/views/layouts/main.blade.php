@@ -36,8 +36,12 @@
         .navbar-toggler:focus,
         .navbar-toggler:active,
         .navbar-toggler-icon:focus,
+        .btn:focus,
+        .btn:active,
         .btn-close:focus,
-        .btn-close:active {
+        .btn-close:active,
+        .form-control:active,
+        .form-control:focus {
             outline: none;
             box-shadow: none;
         }

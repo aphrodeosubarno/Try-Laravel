@@ -12,16 +12,37 @@
                     </div>
                 @endif
 
+                @if (session()->has('login_error'))
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        {{ session('login_error') }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                @endif
+
                 <h1 class="h3 mb-3 fw-normal">Please Login</h1>
-                <form method="POST" action="">
+                <form method="POST" action="/login">
+                    @csrf
+
                     <div class="form-floating">
-                        <input type="email" class="form-control" id="floatingInput" placeholder="Email" />
+                        <input type="email" class="form-control @error('email') is-invalid @enderror" id="floatingInput"
+                            placeholder="Email" name="email" autofocus required value="{{ old('email') }}" />
                         <label for="floatingInput">Email address</label>
+                        @error('email')
+                            <div id="validationServerUsernameFeedback" class="invalid-feedback my-2">
+                                {{ $message }}
+                            </div>
+                        @enderror
                     </div>
 
                     <div class="form-floating">
-                        <input type="password" class="form-control" id="floatingPassword" placeholder="Password" />
+                        <input type="password" class="form-control @error('password') is-invalid @enderror"
+                            id="floatingPassword" placeholder="Password" name="password" required />
                         <label for="floatingPassword">Password</label>
+                        @error('password')
+                            <div id="validationServerUsernameFeedback" class="invalid-feedback my-2">
+                                {{ $message }}
+                            </div>
+                        @enderror
                     </div>
 
                     <button class="w-100 btn mt-3 btn-primary" type="submit">
