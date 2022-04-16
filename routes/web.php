@@ -40,4 +40,5 @@ Route::get('/categories', [CategoryController::class, 'index']);
 // Login
 Route::get('/login', [LoginController::class, 'index']);
 // Register
-Route::get('/register', [RegisterController::class, 'index']);
+Route::get('/register', [RegisterController::class, 'new']);
+Route::post('/register', [RegisterController::class, 'create']);
