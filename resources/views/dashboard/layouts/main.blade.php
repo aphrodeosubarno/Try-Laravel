@@ -7,7 +7,7 @@
     <meta name="description" content="" />
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors" />
     <meta name="generator" content="Hugo 0.88.1" />
-    <title>Dashboard Template · Bootstrap v5.1</title>
+    <title>Larablog | My Dashboard</title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/5.1/examples/dashboard/" />
 
@@ -22,6 +22,10 @@
 
     <!-- Custom styles for this template -->
     <link href="/css/dashboard.css" rel="stylesheet" />
+
+    {{-- Trix Editor --}}
+    <link rel="stylesheet" type="text/css" href="/css/trix.css">
+    <script type="text/javascript" src="/js/trix.js"></script>
 
     <style>
         * {

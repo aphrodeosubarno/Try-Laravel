@@ -4,7 +4,15 @@
         <h1 class="h2 text-left">My Posts</h1>
     </div>
 
+    @if (session()->has('success'))
+        <div class="alert alert-success alert-dismissible fade show col-lg-8" role="alert">
+            {{ session('success') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    @endif
+
     <div class="table-responsive col-lg-8">
+        <a href="/dashboard/posts/create" class="btn btn-primary mb-3">Create New Post</a>
         <table class="table table-striped table-sm">
             <thead>
                 <tr>
@@ -22,7 +30,7 @@
                             <td>{{ $post->title }}</td>
                             <td>{{ $post->category->name }}</td>
                             <td>
-                                <a href="/dashboard/posts/{{ $post->id }}" class="badge bg-primary text-white">
+                                <a href="/dashboard/posts/{{ $post->slug }}" class="badge bg-primary text-white">
                                     <span data-feather="eye"></span>
                                 </a>
                                 <a href="" class="badge bg-success text-white">
