@@ -14,8 +14,11 @@ class DashboardPostController extends Controller
      */
     public function index()
     {
-        return view('dashboar.posts.index', [
-            'posts' => Post::with(['category', 'user'])->latest()->get()
+        return view('dashboard.posts.index', [
+            'posts' => Post::with(['category', 'user'])
+                ->where('user_id', auth()->user()->id)
+                ->latest()
+                ->get()
         ]);
     }
 
@@ -48,7 +51,9 @@ class DashboardPostController extends Controller
      */
     public function show(Post $post)
     {
-        //
+        return view('dashboard.posts.show', [
+            'post' => $post
+        ]);
     }
 
     /**

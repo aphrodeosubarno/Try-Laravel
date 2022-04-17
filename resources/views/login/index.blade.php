@@ -45,6 +45,12 @@
                         @enderror
                     </div>
 
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" value="remember-me" name="remember-me" /> Remember me
+                        </label>
+                    </div>
+
                     <button class="w-100 btn mt-3 btn-primary" type="submit">
                         Login
                     </button>

@@ -1,11 +1,11 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PostController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DashboardPostController;
-use App\Http\Controllers\PostController;
-use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\LoginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -58,4 +58,4 @@ Route::get('/dashboard', function () {
 })->middleware('auth');
 
 // Dashboard Posts
-Route::resource('/dashboard/posts', DashboardPostController::class);
+Route::resource('/dashboard/posts', DashboardPostController::class)->middleware('auth');
