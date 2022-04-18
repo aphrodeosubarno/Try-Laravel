@@ -13,6 +13,12 @@
                     My Posts
                 </a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link {{ Request::is('dashboard/user') ? 'active' : '' }}" href="/dashboard/user">
+                    <span data-feather="user"></span>
+                    Profile
+                </a>
+            </li>
         </ul>
     </div>
 </nav>

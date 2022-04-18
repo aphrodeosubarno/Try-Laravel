@@ -82,7 +82,10 @@ class DashboardPostController extends Controller
      */
     public function edit(Post $post)
     {
-        //
+        return view('dashboard.posts.edit', [
+            'post' => $post,
+            'categories' => Category::all()
+        ]);
     }
 
     /**
@@ -94,7 +97,24 @@ class DashboardPostController extends Controller
      */
     public function update(Request $request, Post $post)
     {
-        //
+        $rules = [
+            'category_id' => ['required'],
+            'body' => ['required', 'min:10'],
+        ];
+
+        if ($request->title != $post->title) {
+            $rules['title'] = ['required', 'min:2', 'max:255', 'unique:posts'];
+        }
+
+        $validated_data = $request->validate($rules);
+
+        $validated_data['slug'] = Str::slug($request->title);
+        $validated_data['user_id'] = auth()->user()->id;
+        $validated_data['excerpt'] = Str::limit(strip_tags($request->body));
+
+        Post::where('id', $post->id)->update($validated_data);
+
+        return redirect('/dashboard/posts')->with('success', 'Post Updated Successfully!');
     }
 
     /**
@@ -105,6 +125,7 @@ class DashboardPostController extends Controller
      */
     public function destroy(Post $post)
     {
-        //
+        Post::find($post->id)->delete();
+        return redirect('/dashboard/posts')->with('success', 'Success Deleted Post!');
     }
 }

@@ -33,12 +33,17 @@
                                 <a href="/dashboard/posts/{{ $post->slug }}" class="badge bg-primary text-white">
                                     <span data-feather="eye"></span>
                                 </a>
-                                <a href="" class="badge bg-success text-white">
+                                <a href="/dashboard/posts/{{ $post->slug }}/edit" class="badge bg-success text-white">
                                     <span data-feather="edit"></span>
                                 </a>
-                                <a href="" class="badge bg-danger text-white">
-                                    <span data-feather="trash-2"></span>
-                                </a>
+                                <form method="POST" action="/dashboard/posts/{{ $post->slug }}" class="d-inline"
+                                    onclick="return confirm('Delete Post?')">
+                                    @method('DELETE')
+                                    @csrf
+                                    <button type="submit" class="badge bg-danger border-0">
+                                        <span data-feather="trash-2"></span>
+                                    </button>
+                                </form>
                             </td>
                         </tr>
                     @endforeach
