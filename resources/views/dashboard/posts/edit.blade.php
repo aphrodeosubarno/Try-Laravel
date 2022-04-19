@@ -6,7 +6,7 @@
     </div>
 
     <div class="col-lg-8 mb-3">
-        <form action="/dashboard/posts/{{ $post->slug }}" method="post">
+        <form action="/dashboard/posts/{{ $post->slug }}" method="post" enctype="multipart/form-data">
             @method('PUT')
             @csrf
             <div class="mb-3">
@@ -30,6 +30,19 @@
                         @endif
                     @endforeach
                 </select>
+            </div>
+            <div class="mb-3">
+                <label for="image" class="form-label">Post Image</label>
+                @if ($post->image)
+                    <img class="d-block col-6 image-preview mb-3 rounded" src="{{ asset('storage/' . $post->image) }}">
+                @endif
+                <input type="hidden" name="image" value="{{ $post->image }}">
+                <input class="form-control  @error('image') is-invalid @enderror" type="file" id="image" name="image">
+                @error('image')
+                    <div id="validationServerUsernameFeedback" class="invalid-feedback my-2">
+                        {{ $message }}
+                    </div>
+                @enderror
             </div>
             <div class="mb-3">
                 <label for="body" class="form-label">Content</label>

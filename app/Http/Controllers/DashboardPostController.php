@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Post;
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 class DashboardPostController extends Controller
@@ -110,6 +111,13 @@ class DashboardPostController extends Controller
 
         $validated_data = $request->validate($rules);
 
+        if (!$request->file('image')) {
+            $validated_data['image'] = $post->image;
+        } else {
+            $validated_data['image'] = $request->file('image')->store('post-images');
+            Storage::delete($post->image);
+        }
+
         $validated_data['slug'] = Str::slug($request->title);
         $validated_data['user_id'] = auth()->user()->id;
         $validated_data['excerpt'] = Str::limit(strip_tags($request->body));
@@ -128,6 +136,7 @@ class DashboardPostController extends Controller
     public function destroy(Post $post)
     {
         Post::find($post->id)->delete();
+        Storage::delete($post->image);
         return redirect('/dashboard/posts')->with('success', 'Success Deleted Post!');
     }
 }
