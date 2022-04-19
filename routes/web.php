@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DashboardPostController;
+use App\Http\Controllers\AdminCategoryController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\LoginController;
 
@@ -59,3 +60,6 @@ Route::get('/dashboard', function () {
 
 // Dashboard Posts
 Route::resource('/dashboard/posts', DashboardPostController::class)->middleware('auth');
+
+// 
+Route::resource('/dashboard/categories', AdminCategoryController::class)->except('show')->middleware('is_admin');
