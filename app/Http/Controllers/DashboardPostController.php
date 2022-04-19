@@ -103,6 +103,7 @@ class DashboardPostController extends Controller
         $rules = [
             'category_id' => ['required'],
             'body' => ['required', 'min:10'],
+            'image' => ['required', 'image', 'file', 'max:5120']
         ];
 
         if ($request->title != $post->title) {

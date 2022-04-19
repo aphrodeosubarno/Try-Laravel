@@ -35,8 +35,9 @@
                 <label for="image" class="form-label">Post Image</label>
                 @if ($post->image)
                     <img class="d-block col-6 image-preview mb-3 rounded" src="{{ asset('storage/' . $post->image) }}">
+                @else
+                    <img class="d-block col-6 image-preview mb-3 rounded">
                 @endif
-                <input type="hidden" name="image" value="{{ $post->image }}">
                 <input class="form-control  @error('image') is-invalid @enderror" type="file" id="image" name="image">
                 @error('image')
                     <div id="validationServerUsernameFeedback" class="invalid-feedback my-2">
