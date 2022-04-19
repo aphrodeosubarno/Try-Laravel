@@ -29,8 +29,8 @@
         @if ($posts->count() > 0)
             <div class="col-12">
                 <div class="card mb-5 p-2" style="box-shadow: 6px 6px 8px rgba(0,0,0,0.15)">
-                    <img src="https://source.unsplash.com/1200x400?{{ $posts[0]->category->name }}" class="card-img-top"
-                        alt="{{ $posts[0]->title }}">
+                    <img src="{{ asset('storage/' . $posts[0]->image) }}" class="card-img-top"
+                        alt="{{ $posts[0]->title }}" style="max-height: 450px; background-size: cover; object-fit: cover">
                     <div class="card-body text-center">
                         <a href="/posts/{{ $posts[0]->slug }}" class="text-decoration-none text-dark">
                             <h5 class="card-title">{{ $posts[0]->title }}</h5>
@@ -56,8 +56,13 @@
             @foreach ($posts->skip(1) as $post)
                 <div class="col-md-4 mb-5 d-flex justify-content-between flex-column">
                     <div class="card" style="min-height: 100%; box-shadow: 6px 6px 8px rgba(0,0,0,0.15)">
-                        <img src="https://source.unsplash.com/500x400?{{ $post->category->name }}" class="card-img-top"
-                            alt="{{ $post->title }}">
+                        @if ($post->image)
+                            <img src="{{ asset('storage/' . $post->image) }}" class="card-img-top"
+                                alt="{{ $post->title }}">
+                        @else
+                            <img src="https://source.unsplash.com/500x400?{{ $post->category->name }}"
+                                class="card-img-top" alt="{{ $post->title }}">
+                        @endif
                         <div class="card-body">
                             <h5 class="card-title">
                                 <a href="/posts/{{ $post->slug }}" class="text-decoration-none text-dark">

@@ -21,8 +21,8 @@
                     </button>
                 </form>
 
-                <img src="https://source.unsplash.com/1200x600?{{ $post->category->name }}"
-                    alt="{{ $post->category->name }}" class="img-fluid my-4 rounded">
+                <img src="{{ asset('storage/' . $post->image) }}" alt="{{ $post->category->name }}"
+                    class="img-fluid my-4 rounded">
 
                 <div class="fs-6">
                     {!! $post->body !!}
