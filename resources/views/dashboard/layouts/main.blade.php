@@ -83,6 +83,7 @@
         integrity="sha384-zNy6FEbO50N+Cg5wap8IKA4M/ZnLJgzc6w2NqACZaK0u0FXfOWRRJOnQtpZun8ha" crossorigin="anonymous">
     </script>
     <script src="/js/dashboard.js"></script>
+    <script src="/js/preview_image.js"></script>
 </body>
 
 </html>

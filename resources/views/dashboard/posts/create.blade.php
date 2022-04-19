@@ -32,6 +32,7 @@
             </div>
             <div class="mb-3">
                 <label for="image" class="form-label">Post Image</label>
+                <img class="d-block col-6 image-preview mb-3 rounded">
                 <input class="form-control  @error('image') is-invalid @enderror" type="file" id="image" name="image">
                 @error('image')
                     <div id="validationServerUsernameFeedback" class="invalid-feedback my-2">
